@@ -1,6 +1,21 @@
 # 2048 🎮
 
-一个功能丰富的 2048 网页游戏，支持多难度模式、暗夜主题、音效音乐、撤销操作、历史记录等特性。
+一个功能丰富的 2048 游戏，包含网页版和微信小程序版，支持多难度模式、暗夜主题、音效音乐、撤销操作、历史记录等特性。
+
+## 📁 项目结构
+
+```
+2048/
+├── web/                  # 网页版（纯 HTML）
+│   ├── index.html
+│   └── bgm.mp3
+├── miniprogram/          # 微信小程序版
+│   ├── app.js / app.json / app.wxss
+│   ├── pages/index/
+│   ├── utils/
+│   └── assets/
+└── README.md
+```
 
 ## ✨ 特性
 
@@ -52,12 +67,10 @@
 
 ## 🚀 快速开始
 
-直接打开 `index.html` 即可游玩，无需任何构建工具或依赖。
-
 ```
-git clone https://github.com/WMS-SONG/web2048.git
-cd web2048
-start index.html
+git clone https://github.com/WMS-SONG/2048.git
+cd 2048
+start web/index.html
 ```
 
 ## 🕹️ 操作方式
@@ -79,6 +92,41 @@ start index.html
 - **localStorage** — 本地数据持久化
 - **CSS 动画** — 融合特效、分数弹出
 - **响应式设计** — 适配桌面和移动端
+
+## 📱 微信小程序版本
+
+项目包含完整的微信小程序移植版本，代码位于 `miniprogram/` 目录。
+
+### 使用方式
+
+1. 下载并安装 [微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
+2. 打开微信开发者工具，导入 `miniprogram/` 目录
+3. 在 `project.config.json` 中将 `appid` 替换为你自己的小程序 AppID
+4. 预览或上传发布
+
+### 与原版差异
+
+| 原网页版 | 小程序版 |
+|---|---|
+| Web Audio API 合成音效 | 触觉振动反馈 (`wx.vibrateShort`) |
+| 键盘方向键 / WASD 操作 | 仅触摸滑动（小程序无键盘事件） |
+| DOM 直接操作 | 数据驱动 (`setData` + WXML 绑定) |
+| `localStorage` 持久化 | `wx.Storage` API |
+| 响应式 `@media` 查询 | `rpx` 自适应单位 |
+| 内联 SVG | 独立 SVG 图标文件 |
+
+### 目录结构
+
+```
+miniprogram/
+├── app.js / app.json / app.wxss   # 全局配置与主题
+├── pages/index/                   # 游戏主页面
+├── utils/
+│   ├── game.js                    # 纯游戏引擎
+│   └── storage.js                 # 数据持久化
+├── assets/                        # 图标与音乐资源
+└── project.config.json            # 开发者工具配置
+```
 
 ## 📄 许可
 
